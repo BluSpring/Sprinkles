@@ -332,6 +332,7 @@ class RoleCommand : Scaffold {
             @Name("category_id")
             categoryId: String,
             role: Role,
+            @Name("display_name")
             displayName: String? = null,
             description: String? = null
         ) {
