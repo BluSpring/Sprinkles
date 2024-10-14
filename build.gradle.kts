@@ -1,7 +1,7 @@
 plugins {
-    kotlin("jvm") version "1.9.23"
-    id("org.jetbrains.kotlin.plugin.serialization") version "1.9.23" apply false
-    id("com.github.johnrengelman.shadow") version "7.1.2"
+    kotlin("jvm") version "2.0.21"
+    id("org.jetbrains.kotlin.plugin.serialization") version "2.0.21" apply false
+    id("com.gradleup.shadow") version "8.3.3"
 }
 
 group = "xyz.bluspring"
@@ -16,7 +16,7 @@ allprojects {
 subprojects {
     apply(plugin = "org.jetbrains.kotlin.jvm")
     apply(plugin = "org.jetbrains.kotlin.plugin.serialization")
-    apply(plugin = "com.github.johnrengelman.shadow")
+    apply(plugin = "com.gradleup.shadow")
 
     repositories {
         mavenCentral()
@@ -38,21 +38,21 @@ subprojects {
     dependencies {
         include("org.jetbrains.kotlin:kotlin-stdlib")
         include("org.jetbrains.kotlin:kotlin-reflect")
-        include("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")
+        include("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0")
 
         include("org.slf4j:slf4j-api:2.0.5")
         include("ch.qos.logback:logback-classic:1.4.7")
         include("ch.qos.logback:logback-core:1.4.7")
 
-        include("com.charleskorn.kaml:kaml:0.54.0")
+        include("com.charleskorn.kaml:kaml:0.61.0")
     }
 
     kotlin {
-        jvmToolchain(17)
+        jvmToolchain(21)
     }
 
     tasks.shadowJar {
         archiveBaseName.set("Sprinkles")
-        this.archiveVersion.set(property("version").toString())
+        this.archiveVersion.set(rootProject.property("version").toString())
     }
 }
