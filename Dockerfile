@@ -1,4 +1,4 @@
-FROM gcr.io/distroless/java21-debian11
+FROM gcr.io/distroless/java21-debian12
 
 ENV APP_HOME=/app
 
