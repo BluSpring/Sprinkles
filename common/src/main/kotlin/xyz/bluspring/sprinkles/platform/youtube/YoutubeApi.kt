@@ -24,7 +24,9 @@ object YoutubeApi {
                 return null
             }
 
-            return JsonParser.parseReader(res.body!!.charStream()).asJsonObject
+            res.body!!.charStream().use { reader ->
+                return JsonParser.parseReader(reader).asJsonObject
+            }
         }
     }
 }

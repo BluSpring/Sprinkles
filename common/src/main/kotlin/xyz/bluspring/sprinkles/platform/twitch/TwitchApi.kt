@@ -51,7 +51,9 @@ object TwitchApi {
                 return
             }
 
-            val json = JsonParser.parseReader(response.body!!.charStream()).asJsonObject
+            val json = response.body!!.charStream().use { reader ->
+                JsonParser.parseReader(reader)
+            }.asJsonObject
 
             accessToken = json.get("access_token").asString
             logger.info("Successfully updated Twitch API access token!")
@@ -79,7 +81,9 @@ object TwitchApi {
                 return post(uri, json, true)
             }
 
-            return JsonParser.parseReader(resp.body!!.charStream()).asJsonObject
+            resp.body!!.charStream().use { reader ->
+                return JsonParser.parseReader(reader).asJsonObject
+            }
         }
     }
 
@@ -104,7 +108,9 @@ object TwitchApi {
                 return get(uri, true)
             }
 
-            return JsonParser.parseReader(resp.body!!.charStream()).asJsonObject
+            resp.body!!.charStream().use { reader ->
+                return JsonParser.parseReader(reader).asJsonObject
+            }
         }
     }
 
