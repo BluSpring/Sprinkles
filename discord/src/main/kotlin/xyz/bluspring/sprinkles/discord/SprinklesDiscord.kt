@@ -51,6 +51,7 @@ class SprinklesDiscord : SprinklesBotModule<DiscordConfig>(NAME) {
             .build()
 
         aviation.slashCommands.register(CommandHelper::class.java.packageName)
+        aviation.messageCommands.register(CommandHelper::class.java.packageName)
         aviation.modules.register(ModuleHelper::class.java.packageName)
 
         aviation.syncCommands(jda)
