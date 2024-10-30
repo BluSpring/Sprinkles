@@ -10,4 +10,5 @@ dependencies {
     }
     api("xyz.artrinix:aviation:7d1dcef7")
     api("club.minnced:jda-ktx:0.12.0")
+    api(kotlin("scripting-jsr223"))
 }
