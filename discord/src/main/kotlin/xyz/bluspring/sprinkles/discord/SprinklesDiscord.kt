@@ -40,6 +40,7 @@ class SprinklesDiscord : SprinklesBotModule<DiscordConfig>(NAME) {
 
         aviation = AviationBuilder()
             .apply {
+                prefixes = listOf("!")
                 ratelimitProvider = DefaultRateLimitStrategy()
 
                 testGuilds += config.testGuilds
@@ -48,10 +49,9 @@ class SprinklesDiscord : SprinklesBotModule<DiscordConfig>(NAME) {
                 registerDefaultParsers()
             }
             .build()
-            .apply {
-                slashCommands.register(CommandHelper::class.java.packageName)
-                modules.register(ModuleHelper::class.java.packageName)
-            }
+
+        aviation.slashCommands.register(CommandHelper::class.java.packageName)
+        aviation.modules.register(ModuleHelper::class.java.packageName)
 
         aviation.syncCommands(jda)
 
