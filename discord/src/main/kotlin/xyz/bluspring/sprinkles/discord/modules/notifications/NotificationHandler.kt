@@ -52,7 +52,11 @@ abstract class NotificationHandler(val platform: String) : AbstractModule {
 
             override fun run() {
                 runBlocking {
-                    poll()
+                    try {
+                        poll()
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                    }
                 }
             }
         }, 0L, loopTime.inWholeMilliseconds)
